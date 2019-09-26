@@ -149,8 +149,10 @@ public class MainViewController: UIViewController {
     }
     
     @objc private func reactionTapped() {
-        let reactionVC = ReactionViewController(image: self.tabBarController?.view.asImage())
-        reactionVC.modalPresentationStyle = .fullScreen
-        self.present(reactionVC, animated: false, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            let backingImage = self.tabBarController?.view.asImage()
+            let reactionVC = ReactionViewController(image: backingImage)
+            self.present(reactionVC, animated: false, completion: nil)
+        }
     }
 }
