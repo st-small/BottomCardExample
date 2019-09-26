@@ -46,6 +46,25 @@ public class MainViewController: UIViewController {
         return label
     }()
     
+    private let containerView: UIView = {
+        let view = ButtonsContainer()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let reactionAction: UIButton = {
+        let button = UIButton(type: .system)
+        let font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        let attrs: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: UIColor.black]
+        let attrTitle =
+            NSAttributedString(string: "😀 Тим Кук и 10 других", attributes: attrs)
+        button.setAttributedTitle(attrTitle, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     public override func loadView() {
         super.loadView()
         
@@ -59,6 +78,7 @@ public class MainViewController: UIViewController {
         prepareUserDescription()
         prepareMainTextDescription()
         prepareButtonsContainer()
+        prepareReactionAction()
     }
     
     private func prepareAvatarImage() {
@@ -93,7 +113,7 @@ public class MainViewController: UIViewController {
     private func prepareMainTextDescription() {
         view.addSubview(descriptionLabel)
         
-        let sampleText = "Она помогает гномам, когда на них напали пауки Лихолесья, и спасает гнома Кили от гибели. Гномы попадают в плен к лесным эльфам Лихолесья и их бросают в подземелье. Причем Тауриэль сама отводит в темницу Кили и позднее общается с ним. Между ними возникает явная симпатия, перерастающая в невысказанные романтические чувства. Затем в момент беседы начальника стражи и короля лесных эльфов Трандуила участник похода Торина Дубощита на Эребор хоббит Бильбо освобождает гномов из заточения и они пытаются бежать в бочках по реке. Эльфы по приказу узнавших о побеге гномов Леголаса и Тауриэль пытаются остановить гномов и подвергаются нападению орков во главе с Больгом. Тауриэль вступает в бой с орками и пленяет одного из них, а затем отправляется на поиски Кили и вместе с Леголасом является в Эсгарот. К тому времени гномы и хоббит находят поддержку в Озерном городе и часть их во главе с Торином, включая Бильбо, отправляется к Одинокой Горе. Сам Кили, раненый орочьей стрелой в сражении с орками у дворца Трандуила, был вынужден остаться в доме Барда Лучника. Но он с другими гномами и семья Барда подвергаются нападению орков и именно в этот момент на помощь приходят Леголас и Тауриэль. Эльфийка исцеляет Кили и вместе с гномами и детьми Барда спасается бегством из Эсгарота, на который напал дракон Смауг."
+        let sampleText = "Она помогает гномам, когда на них напали пауки Лихолесья, и спасает гнома Кили от гибели. Гномы попадают в плен к лесным эльфам Лихолесья и их бросают в подземелье. Причем Тауриэль сама отводит в темницу Кили и позднее общается с ним. Между ними возникает явная симпатия, перерастающая в невысказанные романтические чувства. Затем в момент беседы начальника стражи и короля лесных эльфов Трандуила участник похода Торина Дубощита на Эребор хоббит Бильбо освобождает гномов из заточения и они пытаются бежать в бочках по реке. Эльфы по приказу узнавших о побеге гномов Леголаса и Тауриэль пытаются остановить гномов и подвергаются нападению орков во главе с Больгом. Тауриэль вступает в бой с орками и пленяет одного из них, а затем отправляется на поиски Кили и вместе с Леголасом является в Эсгарот."
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = NSTextAlignment.justified
         paragraphStyle.firstLineHeadIndent = 40.0
@@ -110,15 +130,27 @@ public class MainViewController: UIViewController {
     }
     
     private func prepareButtonsContainer() {
-        let container = ButtonsContainer(frame: CGRect(x: 16, y: descriptionLabel.frame.maxY + 20, width: 300, height: 40))
-        container.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(containerView)
         
-        view.addSubview(container)
-        
-        container.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10).isActive = true
-        container.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-        container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        container.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        container.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        containerView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    }
+    
+    private func prepareReactionAction() {
+        view.addSubview(reactionAction)
+
+        reactionAction.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 10).isActive = true
+        reactionAction.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        reactionAction.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+        reactionAction.addTarget(self, action: #selector(reactionTapped), for: .touchUpInside)
+    }
+    
+    @objc private func reactionTapped() {
+        let reactionVC = ReactionViewController(image: self.tabBarController?.view.asImage())
+        reactionVC.modalPresentationStyle = .fullScreen
+        self.present(reactionVC, animated: false, completion: nil)
     }
 }

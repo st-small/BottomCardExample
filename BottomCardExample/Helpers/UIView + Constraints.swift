@@ -11,20 +11,20 @@ import UIKit
 
 public extension UIView {
     
-    public func fillSuperview(padding: UIEdgeInsets) {
+    func fillSuperview(padding: UIEdgeInsets) {
         anchor(top: superview?.topAnchor, leading: superview?.leadingAnchor, bottom: superview?.bottomAnchor, trailing: superview?.trailingAnchor, padding: padding)
     }
     
-    public func fillSuperview() {
+    func fillSuperview() {
         fillSuperview(padding: .zero)
     }
     
-    public func anchorSize(to view: UIView) {
+    func anchorSize(to view: UIView) {
         widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
     }
     
-    public func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) {
+    func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) {
         
         if let top = top {
             topAnchor.constraint(equalTo: top, constant: padding.top).isActive = true

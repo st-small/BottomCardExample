@@ -13,7 +13,9 @@
 		844891CE23392CFF00D47CF4 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844891CD23392CFF00D47CF4 /* CustomTabBarController.swift */; };
 		844891D123392D9B00D47CF4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844891D023392D9B00D47CF4 /* MainViewController.swift */; };
 		84B13377233CF10700D86CC0 /* ButtonsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B13376233CF10700D86CC0 /* ButtonsContainer.swift */; };
-		84B1337A233CFF9A00D86CC0 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B13379233CFF9A00D86CC0 /* Constraints.swift */; };
+		84B1337A233CFF9A00D86CC0 /* UIView + Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B13379233CFF9A00D86CC0 /* UIView + Constraints.swift */; };
+		84B1337C233D0CF200D86CC0 /* ReactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1337B233D0CF100D86CC0 /* ReactionViewController.swift */; };
+		84B1337E233D0F5600D86CC0 /* UIView + ImageRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1337D233D0F5600D86CC0 /* UIView + ImageRender.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,9 @@
 		844891CD23392CFF00D47CF4 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		844891D023392D9B00D47CF4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		84B13376233CF10700D86CC0 /* ButtonsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsContainer.swift; sourceTree = "<group>"; };
-		84B13379233CFF9A00D86CC0 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		84B13379233CFF9A00D86CC0 /* UIView + Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Constraints.swift"; sourceTree = "<group>"; };
+		84B1337B233D0CF100D86CC0 /* ReactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionViewController.swift; sourceTree = "<group>"; };
+		84B1337D233D0F5600D86CC0 /* UIView + ImageRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ImageRender.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				844891D023392D9B00D47CF4 /* MainViewController.swift */,
+				84B1337B233D0CF100D86CC0 /* ReactionViewController.swift */,
 				84B13375233CF0C400D86CC0 /* Subviews */,
 			);
 			path = ViewControllers;
@@ -105,7 +110,8 @@
 		84B13378233CFF8200D86CC0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				84B13379233CFF9A00D86CC0 /* Constraints.swift */,
+				84B13379233CFF9A00D86CC0 /* UIView + Constraints.swift */,
+				84B1337D233D0F5600D86CC0 /* UIView + ImageRender.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -182,9 +188,11 @@
 			files = (
 				844891D123392D9B00D47CF4 /* MainViewController.swift in Sources */,
 				844891CE23392CFF00D47CF4 /* CustomTabBarController.swift in Sources */,
-				84B1337A233CFF9A00D86CC0 /* Constraints.swift in Sources */,
+				84B1337A233CFF9A00D86CC0 /* UIView + Constraints.swift in Sources */,
+				84B1337C233D0CF200D86CC0 /* ReactionViewController.swift in Sources */,
 				844891BA2339283D00D47CF4 /* AppDelegate.swift in Sources */,
 				84B13377233CF10700D86CC0 /* ButtonsContainer.swift in Sources */,
+				84B1337E233D0F5600D86CC0 /* UIView + ImageRender.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
