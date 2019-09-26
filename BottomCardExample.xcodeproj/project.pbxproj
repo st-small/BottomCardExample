@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		844891BA2339283D00D47CF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844891B92339283D00D47CF4 /* AppDelegate.swift */; };
-		844891BC2339283D00D47CF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844891BB2339283D00D47CF4 /* ViewController.swift */; };
-		844891BF2339283D00D47CF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844891BD2339283D00D47CF4 /* Main.storyboard */; };
 		844891C12339283E00D47CF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844891C02339283E00D47CF4 /* Assets.xcassets */; };
 		844891C42339283E00D47CF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844891C22339283E00D47CF4 /* LaunchScreen.storyboard */; };
+		844891CE23392CFF00D47CF4 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844891CD23392CFF00D47CF4 /* CustomTabBarController.swift */; };
+		844891D123392D9B00D47CF4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844891D023392D9B00D47CF4 /* MainViewController.swift */; };
+		84B13377233CF10700D86CC0 /* ButtonsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B13376233CF10700D86CC0 /* ButtonsContainer.swift */; };
+		84B1337A233CFF9A00D86CC0 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B13379233CFF9A00D86CC0 /* Constraints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		844891B62339283D00D47CF4 /* BottomCardExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BottomCardExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844891B92339283D00D47CF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		844891BB2339283D00D47CF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		844891BE2339283D00D47CF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		844891C02339283E00D47CF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		844891C32339283E00D47CF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		844891C52339283E00D47CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		844891CD23392CFF00D47CF4 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		844891D023392D9B00D47CF4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		84B13376233CF10700D86CC0 /* ButtonsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsContainer.swift; sourceTree = "<group>"; };
+		84B13379233CFF9A00D86CC0 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,56 @@
 		844891B82339283D00D47CF4 /* BottomCardExample */ = {
 			isa = PBXGroup;
 			children = (
+				844891CF23392D7A00D47CF4 /* ViewControllers */,
+				844891CC23392CDB00D47CF4 /* TabBarController */,
+				844891CB23392C5000D47CF4 /* Environment */,
+				84B13378233CFF8200D86CC0 /* Helpers */,
+			);
+			path = BottomCardExample;
+			sourceTree = "<group>";
+		};
+		844891CB23392C5000D47CF4 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
 				844891B92339283D00D47CF4 /* AppDelegate.swift */,
-				844891BB2339283D00D47CF4 /* ViewController.swift */,
-				844891BD2339283D00D47CF4 /* Main.storyboard */,
 				844891C02339283E00D47CF4 /* Assets.xcassets */,
 				844891C22339283E00D47CF4 /* LaunchScreen.storyboard */,
 				844891C52339283E00D47CF4 /* Info.plist */,
 			);
-			path = BottomCardExample;
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		844891CC23392CDB00D47CF4 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				844891CD23392CFF00D47CF4 /* CustomTabBarController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		844891CF23392D7A00D47CF4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				844891D023392D9B00D47CF4 /* MainViewController.swift */,
+				84B13375233CF0C400D86CC0 /* Subviews */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		84B13375233CF0C400D86CC0 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				84B13376233CF10700D86CC0 /* ButtonsContainer.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		84B13378233CFF8200D86CC0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				84B13379233CFF9A00D86CC0 /* Constraints.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +170,6 @@
 			files = (
 				844891C42339283E00D47CF4 /* LaunchScreen.storyboard in Resources */,
 				844891C12339283E00D47CF4 /* Assets.xcassets in Resources */,
-				844891BF2339283D00D47CF4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,22 +180,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				844891BC2339283D00D47CF4 /* ViewController.swift in Sources */,
+				844891D123392D9B00D47CF4 /* MainViewController.swift in Sources */,
+				844891CE23392CFF00D47CF4 /* CustomTabBarController.swift in Sources */,
+				84B1337A233CFF9A00D86CC0 /* Constraints.swift in Sources */,
 				844891BA2339283D00D47CF4 /* AppDelegate.swift in Sources */,
+				84B13377233CF10700D86CC0 /* ButtonsContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		844891BD2339283D00D47CF4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				844891BE2339283D00D47CF4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		844891C22339283E00D47CF4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,7 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3PTYV272Z4;
-				INFOPLIST_FILE = BottomCardExample/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BottomCardExample/Environment/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -292,7 +332,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ua.kr.ssh.BottomCardExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,7 +342,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3PTYV272Z4;
-				INFOPLIST_FILE = BottomCardExample/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BottomCardExample/Environment/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,7 +350,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ua.kr.ssh.BottomCardExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
