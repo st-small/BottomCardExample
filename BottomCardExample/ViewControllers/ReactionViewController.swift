@@ -8,6 +8,11 @@
 
 import UIKit
 
+public enum CardViewState {
+    case expanded
+    case normal
+}
+
 public class ReactionViewController: UIViewController {
     
     // UI elements
@@ -36,9 +41,27 @@ public class ReactionViewController: UIViewController {
         return view
     }()
     
+    private let handleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        view.layer.cornerRadius = 3.0
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let bannerImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     // Data
     private var backgroundImage: UIImage?
-    private var cardViewTop : NSLayoutConstraint?
+    private var cardViewTop: NSLayoutConstraint?
+    private var cardViewState: CardViewState = .normal
+    private var cardPanStartingTopConstant: CGFloat = 30.0
 
     public init(image: UIImage?) {
         backgroundImage = image
@@ -56,6 +79,9 @@ public class ReactionViewController: UIViewController {
         prepareBackgroundImage()
         createDimmerView()
         prepareCardView()
+        prepareHandleView()
+        preparePanGesture()
+        prepareBannerImage()
     }
     
     private func prepareBackgroundImage() {
@@ -96,19 +122,87 @@ public class ReactionViewController: UIViewController {
         }
     }
     
+    private func prepareHandleView() {
+        view.addSubview(handleView)
+        
+        handleView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        handleView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        handleView.heightAnchor.constraint(equalToConstant: 6).isActive = true
+        handleView.bottomAnchor.constraint(equalTo: cardView.topAnchor, constant: -10).isActive = true
+    }
+    
+    private func preparePanGesture() {
+        let viewPan = UIPanGestureRecognizer(target: self, action: #selector(viewPanned(_:)))
+        viewPan.delaysTouchesBegan = false
+        viewPan.delaysTouchesEnded = false
+        
+        self.view.addGestureRecognizer(viewPan)
+    }
+    
+    private func prepareBannerImage() {
+        cardView.addSubview(bannerImage)
+        
+        bannerImage.image = UIImage(named: "Tauriel")
+        bannerImage.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
+        bannerImage.centerYAnchor.constraint(equalTo: cardView.centerYAnchor).isActive = true
+        bannerImage.widthAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 0.8).isActive = true
+        bannerImage.heightAnchor.constraint(equalTo: cardView.heightAnchor, multiplier: 0.8).isActive = true
+    }
+    
+    @objc private func viewPanned(_ panRecognizer: UIPanGestureRecognizer) {
+        let translation = panRecognizer.translation(in: self.view)
+        
+        guard let topConstant = cardViewTop else { return }
+        let velocity = panRecognizer.velocity(in: self.view)
+        switch panRecognizer.state {
+        case .began:
+            cardPanStartingTopConstant = topConstant.constant
+        case .changed :
+            dimmerView.alpha = dimAlphaWithCardTopConstraint(value: topConstant.constant)
+            if cardPanStartingTopConstant + translation.y > 30.0 {
+                topConstant.constant = cardPanStartingTopConstant + translation.y
+            }
+        case .ended :
+            if velocity.y > 1500.0 {
+                hideCardAndGoBack()
+                return
+            }
+            
+            if let safeAreaHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height,
+                let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom {
+                
+                if topConstant.constant < (safeAreaHeight + bottomPadding) * 0.25 {
+                    showCard(atState: .expanded)
+                } else if topConstant.constant < (safeAreaHeight) - 70 {
+                    showCard(atState: .normal)
+                } else {
+                    hideCardAndGoBack()
+                }
+            }
+        default:
+            break
+        }
+    }
+    
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         showCard()
     }
     
-    private func showCard() {
+    private func showCard(atState: CardViewState = .normal) {
         
         self.view.layoutIfNeeded()
         if let safeAreaHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height,
             let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom {
             
-            cardViewTop?.constant = (safeAreaHeight + bottomPadding) / 2.0
+            if atState == .expanded {
+                cardViewTop?.constant = 30.0
+            } else {
+                cardViewTop?.constant = (safeAreaHeight + bottomPadding) / 2.0
+            }
+            
+            cardPanStartingTopConstant = cardViewTop?.constant ?? 0
         }
         
         let showCard = UIViewPropertyAnimator(duration: 0.25, curve: .easeIn, animations: {
@@ -153,5 +247,27 @@ public class ReactionViewController: UIViewController {
         })
         
         hideCard.startAnimation()
+    }
+    
+    private func dimAlphaWithCardTopConstraint(value: CGFloat) -> CGFloat {
+        let fullDimAlpha : CGFloat = 0.7
+        
+        guard let safeAreaHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height,
+            let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom else {
+                return fullDimAlpha
+        }
+        
+        let fullDimPosition = (safeAreaHeight + bottomPadding) / 2.0
+        let noDimPosition = safeAreaHeight + bottomPadding
+
+        if value < fullDimPosition {
+            return fullDimAlpha
+        }
+
+        if value > noDimPosition {
+            return 0.0
+        }
+        
+        return fullDimAlpha * 1 - ((value - fullDimPosition) / fullDimPosition)
     }
 }
